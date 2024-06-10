@@ -1,6 +1,3 @@
-import Stripe from "stripe";
-interface StripeConfig {
-    (secretKey: string): Stripe;
-}
+import { StripeConfig } from '../types/index';
 declare const stripeConfig: StripeConfig;
 export default stripeConfig;
