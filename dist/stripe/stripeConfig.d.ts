@@ -1,3 +1,2 @@
-import { StripeConfig } from '../types/index';
-declare const stripeConfig: StripeConfig;
-export default stripeConfig;
+import { StripeConfig } from '../types/StripeTypes';
+export declare const stripeConfig: StripeConfig;

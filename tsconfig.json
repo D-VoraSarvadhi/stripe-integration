@@ -1,20 +1,14 @@
 {
     "compilerOptions": {
-      "target": "es2016",
+      "target": "ES6",
       "module": "commonjs",
-      "baseUrl": "src",
-      "declaration": true, // Generate .d.ts files
-      "rootDir": "./src",
       "outDir": "./dist",
+      "strict": true,
       "esModuleInterop": true,
-      "forceConsistentCasingInFileNames": true,
       "skipLibCheck": true,
-      "resolveJsonModule": true,
-      "paths": {
-        "*": ["node_modules/*", "src/types/*"]
-      }
+      "forceConsistentCasingInFileNames": true,
+      "declaration": true
     },
-    "include": ["src/**/*.ts"],
-    "exclude": ["node_modules"]
+    "include": ["src/**/*"]
   }
   

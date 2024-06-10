@@ -1,2 +1,1 @@
-import stripeConfig from "./stripe/stripeConfig";
-export { stripeConfig as configureStripe };
+export { StripeService } from './stripe/stripeService';
