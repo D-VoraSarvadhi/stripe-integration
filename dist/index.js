@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.StripeInitializer = void 0;
+exports.StripeService = void 0;
 // src/index.ts
-var stripeConfig_1 = require("./stripe/stripeConfig");
-Object.defineProperty(exports, "StripeInitializer", { enumerable: true, get: function () { return stripeConfig_1.StripeInitializer; } });
+var stripeService_1 = require("./stripe/stripeService");
+Object.defineProperty(exports, "StripeService", { enumerable: true, get: function () { return stripeService_1.StripeService; } });

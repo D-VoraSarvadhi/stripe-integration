@@ -1,19 +1,22 @@
-// // src/stripe/StripeService.ts
-// import Stripe from 'stripe';
-// import { stripeConfig } from './stripeConfig';
-// // import { CustomerData } from '../types/index';
+import Stripe from 'stripe';
 
-// export class StripeService {
-//   private stripe: Stripe;
+export class StripeService {
+  private stripe: Stripe;
 
-//   constructor(apiKey: string) {
-//     this.stripe = stripeConfig(apiKey);
-//   }
+  constructor(secretKey: string) {
+    this.stripe = new Stripe(secretKey);
+  }
 
-//   public async createCustomer(data: { email: any; name: any; }) {
-//     return this.stripe.customers.create({
-//       email: data.email,
-//       name: data.name,
-//     });
-//   }
-// }
+  async createCustomer(data: { email: string; name: string; }): Promise<Stripe.Customer | undefined> {
+    try {
+      const customer = await this.stripe.customers.create({
+        email: data.email,
+        name: data.name,
+      });
+      return customer;
+    } catch (error) {
+      console.error('Error creating customer:', error);
+      return undefined;
+    }
+  }
+}
