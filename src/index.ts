@@ -1,2 +1,2 @@
 // src/index.ts
-export { stripeConfig } from './stripe/stripeConfig';
+export { StripeInitializer } from './stripe/stripeConfig';

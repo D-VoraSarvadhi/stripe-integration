@@ -1,6 +1,14 @@
 import Stripe from 'stripe';
 import { StripeConfig } from '../types/StripeTypes';
 
-export const stripeConfig: StripeConfig = (secretKey) => {
-    return new Stripe(secretKey);
-};
+export class StripeInitializer {
+    private secretKey: string;
+
+    constructor(secretKey: string) {
+        this.secretKey = secretKey;
+    }
+
+    initialize(): Stripe {
+        return new Stripe(this.secretKey);
+    }
+}
