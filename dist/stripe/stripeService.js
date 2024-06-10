@@ -33,5 +33,42 @@ class StripeService {
             }
         });
     }
+    makePaymentWithCard(amount, currency, cardNumber, cvc, expMonth, expYear) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const paymentMethod = yield this.stripe.paymentMethods.create({
+                    type: 'card',
+                    card: {
+                        number: cardNumber,
+                        cvc,
+                        exp_month: expMonth,
+                        exp_year: expYear,
+                    },
+                });
+                const paymentIntent = yield this.stripe.paymentIntents.create({
+                    amount,
+                    currency,
+                    payment_method: paymentMethod.id,
+                });
+                return paymentIntent;
+            }
+            catch (error) {
+                console.error('Error making payment:', error);
+                return undefined;
+            }
+        });
+    }
+    cancelPayment(paymentIntentId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const canceledPaymentIntent = yield this.stripe.paymentIntents.cancel(paymentIntentId);
+                return canceledPaymentIntent;
+            }
+            catch (error) {
+                console.error('Error canceling payment:', error);
+                return undefined;
+            }
+        });
+    }
 }
 exports.StripeService = StripeService;
