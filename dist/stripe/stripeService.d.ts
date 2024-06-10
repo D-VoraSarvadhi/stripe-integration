@@ -1,5 +1,5 @@
 import Stripe from 'stripe';
-import { CustomerData } from '../types/StripeTypes';
+import { CustomerData } from '../types/index';
 export declare class StripeService {
     private stripe;
     constructor(apiKey: string);
