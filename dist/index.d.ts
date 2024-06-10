@@ -1,1 +1,1 @@
-export { StripeService } from './stripe/stripeService';
+export { stripeConfig } from './stripe/stripeConfig';
