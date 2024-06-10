@@ -266,6 +266,6 @@ export declare class StripeService {
         email: string;
         name: string;
     }): Promise<Stripe.Customer | undefined>;
-    makePaymentWithCard(amount: number, currency: string, cardNumber: string, cvc: string, expMonth: number, expYear: number): Promise<Stripe.PaymentIntent | undefined>;
+    makePaymentWithCard(amount: number, currency: string, cardNumber: string, cvc: string, expMonth: number, expYear: number, redirectUrl: string): Promise<Stripe.PaymentIntent | undefined>;
     cancelPayment(paymentIntentId: string): Promise<Stripe.PaymentIntent | undefined>;
 }

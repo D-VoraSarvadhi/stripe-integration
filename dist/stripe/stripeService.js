@@ -33,7 +33,7 @@ class StripeService {
             }
         });
     }
-    makePaymentWithCard(amount, currency, cardNumber, cvc, expMonth, expYear) {
+    makePaymentWithCard(amount, currency, cardNumber, cvc, expMonth, expYear, redirectUrl) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const paymentMethod = yield this.stripe.paymentMethods.create({
@@ -49,6 +49,7 @@ class StripeService {
                     amount,
                     currency,
                     payment_method: paymentMethod.id,
+                    return_url: redirectUrl,
                 });
                 return paymentIntent;
             }
