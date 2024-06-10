@@ -11,6 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.StripeService = void 0;
 const stripeConfig_1 = require("./stripeConfig");
+// import { CustomerData } from '../types/index';
 class StripeService {
     constructor(apiKey) {
         this.stripe = (0, stripeConfig_1.stripeConfig)(apiKey);

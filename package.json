@@ -6,7 +6,7 @@
   "types": "index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc && xcopy /s /e src\\types dist\\types"
+    "build": "tsc"
   },
   "author": "Durvesh Vora",
   "license": "ISC",

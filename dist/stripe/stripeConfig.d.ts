@@ -1,2 +1,2 @@
-import { StripeConfig } from '../types/index';
-export declare const stripeConfig: StripeConfig;
+import Stripe from 'stripe';
+export declare const stripeConfig: (secretKey: string) => Stripe;
