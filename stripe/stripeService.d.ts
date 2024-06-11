@@ -267,6 +267,7 @@ export declare class StripeService {
         name: string;
     }): Promise<Stripe.Customer | undefined>;
     createPaymentMethod(data: {
+        type: 'card';
         cardNumber: string;
         cvc: string;
         expMonth: number;
@@ -280,4 +281,12 @@ export declare class StripeService {
         customer: string;
     }): Promise<Stripe.PaymentIntent | undefined>;
     cancelPayment(paymentIntentId: string): Promise<Stripe.PaymentIntent | undefined>;
+    createCheckoutSession(data: {
+        amount: number;
+        currency: string;
+        successUrl: string;
+        cancelUrl: string;
+        customer: string;
+        productName: string;
+    }): Promise<Stripe.Checkout.Session | undefined>;
 }

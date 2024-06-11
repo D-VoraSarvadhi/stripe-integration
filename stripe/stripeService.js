@@ -37,7 +37,7 @@ class StripeService {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const paymentMethod = yield this.stripe.paymentMethods.create({
-                    type: 'card',
+                    type: data.type,
                     card: {
                         number: data.cardNumber,
                         cvc: data.cvc,
@@ -79,6 +79,34 @@ class StripeService {
             }
             catch (error) {
                 console.error('Error canceling payment:', error);
+                return undefined;
+            }
+        });
+    }
+    createCheckoutSession(data) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const session = yield this.stripe.checkout.sessions.create({
+                    payment_method_types: ['card'],
+                    line_items: [{
+                            price_data: {
+                                currency: data.currency,
+                                product_data: {
+                                    name: data.productName,
+                                },
+                                unit_amount: data.amount,
+                            },
+                            quantity: 1,
+                        }],
+                    mode: 'payment',
+                    success_url: data.successUrl,
+                    cancel_url: data.cancelUrl,
+                    customer: data.customer,
+                });
+                return session;
+            }
+            catch (error) {
+                console.error('Error creating checkout session:', error);
                 return undefined;
             }
         });
