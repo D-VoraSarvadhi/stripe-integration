@@ -266,13 +266,16 @@ export declare class StripeService {
         email: string;
         name: string;
     }): Promise<Stripe.Customer | undefined>;
-    makePaymentWithCard(data: {
-        amount: number;
-        currency: string;
+    createPaymentMethod(data: {
         cardNumber: string;
         cvc: string;
         expMonth: number;
         expYear: number;
+    }): Promise<Stripe.PaymentMethod | undefined>;
+    createPaymentIntent(data: {
+        amount: number;
+        currency: string;
+        paymentMethodId: string;
         redirectUrl: string;
         customer: string;
     }): Promise<Stripe.PaymentIntent | undefined>;

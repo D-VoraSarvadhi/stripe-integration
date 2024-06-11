@@ -33,7 +33,7 @@ class StripeService {
             }
         });
     }
-    makePaymentWithCard(data) {
+    createPaymentMethod(data) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const paymentMethod = yield this.stripe.paymentMethods.create({
@@ -45,17 +45,28 @@ class StripeService {
                         exp_year: data.expYear,
                     },
                 });
+                return paymentMethod;
+            }
+            catch (error) {
+                console.error('Error creating payment method:', error);
+                return undefined;
+            }
+        });
+    }
+    createPaymentIntent(data) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
                 const paymentIntent = yield this.stripe.paymentIntents.create({
                     amount: data.amount,
                     currency: data.currency,
-                    payment_method: paymentMethod.id,
+                    payment_method: data.paymentMethodId,
                     return_url: data.redirectUrl,
-                    customer: data.customer
+                    customer: data.customer,
                 });
                 return paymentIntent;
             }
             catch (error) {
-                console.error('Error making payment:', error);
+                console.error('Error creating payment intent:', error);
                 return undefined;
             }
         });
