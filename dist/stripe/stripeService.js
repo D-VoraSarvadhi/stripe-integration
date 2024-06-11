@@ -33,24 +33,24 @@ class StripeService {
             }
         });
     }
-    makePaymentWithCard(amount, currency, cardNumber, cvc, expMonth, expYear, redirectUrl, customer) {
+    makePaymentWithCard(data) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const paymentMethod = yield this.stripe.paymentMethods.create({
                     type: 'card',
                     card: {
-                        number: cardNumber,
-                        cvc,
-                        exp_month: expMonth,
-                        exp_year: expYear,
+                        number: data.cardNumber,
+                        cvc: data.cvc,
+                        exp_month: data.expMonth,
+                        exp_year: data.expYear,
                     },
                 });
                 const paymentIntent = yield this.stripe.paymentIntents.create({
-                    amount,
-                    currency,
+                    amount: data.amount,
+                    currency: data.currency,
                     payment_method: paymentMethod.id,
-                    return_url: redirectUrl,
-                    customer
+                    return_url: data.redirectUrl,
+                    customer: data.customer
                 });
                 return paymentIntent;
             }
