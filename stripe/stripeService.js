@@ -16,7 +16,9 @@ exports.StripeService = void 0;
 const stripe_1 = __importDefault(require("stripe"));
 class StripeService {
     constructor(secretKey) {
-        this.stripe = new stripe_1.default(secretKey);
+        this.stripe = new stripe_1.default(secretKey, {
+            apiVersion: '2022-11-15'
+        });
     }
     createCustomer(data) {
         return __awaiter(this, void 0, void 0, function* () {
