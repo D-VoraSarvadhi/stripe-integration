@@ -17,7 +17,7 @@ const stripe_1 = __importDefault(require("stripe"));
 class StripeService {
     constructor(secretKey) {
         this.stripe = new stripe_1.default(secretKey, {
-            apiVersion: '2022-11-15'
+            apiVersion: '2024-04-10'
         });
     }
     createCustomer(data) {
@@ -85,30 +85,44 @@ class StripeService {
             }
         });
     }
-    createCheckoutSession(data) {
+    createPrice(currency, unit_amount, product_name) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const price = yield this.stripe.prices.create({
+                    currency: currency,
+                    unit_amount: unit_amount,
+                    product_data: {
+                        name: product_name,
+                    },
+                });
+                return price;
+            }
+            catch (error) {
+                console.error('Error creating price:', error);
+                return undefined;
+            }
+        });
+    }
+    createSession(success_url, cancel_url, customer, price_id) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const session = yield this.stripe.checkout.sessions.create({
+                    success_url,
+                    cancel_url,
+                    customer,
                     payment_method_types: ['card'],
-                    line_items: [{
-                            price_data: {
-                                currency: data.currency,
-                                product_data: {
-                                    name: data.productName,
-                                },
-                                unit_amount: data.amount,
-                            },
+                    line_items: [
+                        {
+                            price: price_id,
                             quantity: 1,
-                        }],
+                        },
+                    ],
                     mode: 'payment',
-                    success_url: data.successUrl,
-                    cancel_url: data.cancelUrl,
-                    customer: data.customer,
                 });
                 return session;
             }
             catch (error) {
-                console.error('Error creating checkout session:', error);
+                console.error('Error creating session:', error);
                 return undefined;
             }
         });
