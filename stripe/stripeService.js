@@ -127,5 +127,17 @@ class StripeService {
             }
         });
     }
+    retrieveSession(sessionId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const session = yield this.stripe.checkout.sessions.retrieve(sessionId);
+                return session;
+            }
+            catch (error) {
+                console.error('Error retrieving session:', error);
+                return undefined;
+            }
+        });
+    }
 }
 exports.StripeService = StripeService;

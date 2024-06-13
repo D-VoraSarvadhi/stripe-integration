@@ -283,4 +283,5 @@ export declare class StripeService {
     cancelPayment(paymentIntentId: string): Promise<Stripe.PaymentIntent | undefined>;
     createPrice(currency: string, unit_amount: number, product_name: string): Promise<Stripe.Price | undefined>;
     createSession(success_url: string, cancel_url: string, customer: string, price_id: string): Promise<Stripe.Checkout.Session | undefined>;
+    retrieveSession(sessionId: string): Promise<Stripe.Checkout.Session | undefined>;
 }
