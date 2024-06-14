@@ -35,6 +35,20 @@ class StripeService {
             }
         });
     }
+    existingCustomer(data) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const customers = yield this.stripe.customers.list({
+                    email: data.email,
+                    limit: 1,
+                });
+            }
+            catch (error) {
+                console.error('Error getting customer:', error);
+                return undefined;
+            }
+        });
+    }
     createPaymentMethod(data) {
         return __awaiter(this, void 0, void 0, function* () {
             try {

@@ -266,6 +266,9 @@ export declare class StripeService {
         email: string;
         name: string;
     }): Promise<Stripe.Customer | undefined>;
+    existingCustomer(data: {
+        email: string;
+    }): Promise<Stripe.Customer | undefined>;
     createPaymentMethod(data: {
         type: 'card';
         cardNumber: string;
