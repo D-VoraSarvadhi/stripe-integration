@@ -42,6 +42,7 @@ class StripeService {
                     email: data.email,
                     limit: 1,
                 });
+                return customers.data[0];
             }
             catch (error) {
                 console.error('Error getting customer:', error);
