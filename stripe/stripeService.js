@@ -22,55 +22,52 @@ class StripeService {
     }
     createCustomer(data) {
         return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const customer = yield this.stripe.customers.create({
-                    email: data.email,
-                    name: data.name,
-                });
-                return customer;
-            }
-            catch (error) {
-                console.error('Error creating customer:', error);
-                return undefined;
-            }
+            // try {
+            const customer = yield this.stripe.customers.create({
+                email: data.email,
+                name: data.name,
+            });
+            return customer;
+            // } catch (error) {
+            //   console.error('Error creating customer:', error);
+            //   return undefined;
+            // }
         });
     }
     createPaymentMethod(data) {
         return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const paymentMethod = yield this.stripe.paymentMethods.create({
-                    type: data.type,
-                    card: {
-                        number: data.cardNumber,
-                        cvc: data.cvc,
-                        exp_month: data.expMonth,
-                        exp_year: data.expYear,
-                    },
-                });
-                return paymentMethod;
-            }
-            catch (error) {
-                console.error('Error creating payment method:', error);
-                return undefined;
-            }
+            // try {
+            const paymentMethod = yield this.stripe.paymentMethods.create({
+                type: data.type,
+                card: {
+                    number: data.cardNumber,
+                    cvc: data.cvc,
+                    exp_month: data.expMonth,
+                    exp_year: data.expYear,
+                },
+            });
+            return paymentMethod;
+            // } catch (error) {
+            //   console.error('Error creating payment method:', error);
+            //   return undefined;
+            // }
         });
     }
     createPaymentIntent(data) {
         return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const paymentIntent = yield this.stripe.paymentIntents.create({
-                    amount: data.amount,
-                    currency: data.currency,
-                    payment_method: data.paymentMethodId,
-                    return_url: data.redirectUrl,
-                    customer: data.customer,
-                });
-                return paymentIntent;
-            }
-            catch (error) {
-                console.error('Error creating payment intent:', error);
-                return undefined;
-            }
+            // try {
+            const paymentIntent = yield this.stripe.paymentIntents.create({
+                amount: data.amount,
+                currency: data.currency,
+                payment_method: data.paymentMethodId,
+                return_url: data.redirectUrl,
+                customer: data.customer,
+            });
+            return paymentIntent;
+            // } catch (error) {
+            //   console.error('Error creating payment intent:', error);
+            //   return undefined;
+            // }
         });
     }
     cancelPayment(paymentIntentId) {
