@@ -58,15 +58,19 @@ class StripeService {
     createPaymentIntent(data) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const paymentIntent = yield this.stripe.paymentIntents.create({
+                const paymentIntentParams = {
                     amount: data.amount,
                     currency: data.currency,
                     payment_method: data.paymentMethodId,
                     return_url: data.redirectUrl,
                     customer: data.customer,
                     confirm: data.confirm,
-                    use_stripe_sdk: data.use_stripe_sdk
-                });
+                    use_stripe_sdk: data.use_stripe_sdk,
+                };
+                if (data.description) {
+                    paymentIntentParams.description = data.description;
+                }
+                const paymentIntent = yield this.stripe.paymentIntents.create(paymentIntentParams);
                 return paymentIntent;
             }
             catch (error) {
