@@ -279,6 +279,8 @@ export declare class StripeService {
         paymentMethodId: string;
         redirectUrl: string;
         customer: string;
+        confirm: boolean;
+        use_stripe_sdk: boolean;
     }): Promise<Stripe.PaymentIntent | undefined>;
     cancelPayment(paymentIntentId: string): Promise<Stripe.PaymentIntent | undefined>;
     createPrice(currency: string, unit_amount: number, product_name: string): Promise<Stripe.Price | undefined>;
