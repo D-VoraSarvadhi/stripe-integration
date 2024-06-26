@@ -160,5 +160,20 @@ class StripeService {
             }
         });
     }
+    createRefund(paymentIntentId, amount) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const refund = yield this.stripe.refunds.create({
+                    payment_intent: paymentIntentId,
+                    amount: amount
+                });
+                return refund;
+            }
+            catch (error) {
+                console.error('Error creating refund:', error);
+                return undefined;
+            }
+        });
+    }
 }
 exports.StripeService = StripeService;
